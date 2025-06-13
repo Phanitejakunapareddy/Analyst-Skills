@@ -1,49 +1,46 @@
-# Business Analyst Portfolio
+# Strategic Audience Segmentation for Business Growth
 
-Welcome to my Business Analyst portfolio repository. This collection showcases my skills and projects utilizing data analytics, visualization, and business analysis tools to deliver actionable insights and support data-driven decision making.
+This repository contains the **Audience Segmentation** project presentation showcasing a data-driven approach to customer segmentation, predictive modeling, and marketing strategy optimization.
 
-## Skills
+## Project Overview
 
-### Technical Skills
-- **SQL:** Data querying, data manipulation, and database management.
-- **R:** Data cleaning, statistical analysis, and predictive modeling.
-- **Tableau:** Interactive dashboards, data visualization, and business intelligence reporting.
-- **SAS:** Advanced analytics, data management, and statistical modeling.
+The project leverages CRM and engagement data across multiple product lines to identify key customer segments and drive targeted marketing strategies. Using advanced analytics techniques including:
 
-### Business Analyst Skills
-- Requirements gathering and documentation  
-- Business process analysis and improvement  
-- Stakeholder communication and collaboration  
-- Data-driven decision support  
-- Agile methodology and project lifecycle understanding  
-- User Acceptance Testing (UAT) coordination
+- K-Means Clustering for segmentation  
+- Linear and Logistic Regression  
+- Random Forest with SMOTE for class imbalance handling  
+- ANOVA for revenue differences analysis
 
-### Soft Skills
-- Strong analytical and problem-solving abilities  
-- Effective verbal and written communication  
-- Detail-oriented with a focus on accuracy  
-- Team player with cross-functional collaboration experience  
-- Adaptability and continuous learning mindset  
-- Time management and organizational skills
+The analysis uncovers distinct customer clusters (Loyal, Upsell, Evaluate, Nurture) that enable personalized marketing, improved lead scoring, and revenue growth opportunities estimated at $8M+.
 
-## Projects
+## Key Deliverables
 
-This repository includes a variety of projects demonstrating the application of my skills in real-world business scenarios, including data analysis, reporting, and process improvement initiatives.
+- Segmentation framework and cluster analysis  
+- Predictive models for revenue likelihood  
+- Business insights linking segmentation to campaign focus and product strategies  
+- Visual dashboards and detailed presentations (PDF included)
 
 ## How to Use
 
-- Explore the scripts and dashboards to understand how I approach data problems and business challenges.  
-- Review the documentation to see detailed explanations of each project’s objectives, methodologies, and results.  
-- Feel free to reach out if you want to discuss any of the projects or potential collaborations.
+- Review the `Audience Segmentation.pdf` file for full project details and results.  
+- Use this analysis as a guide for implementing segmentation-driven marketing strategies.  
+- Explore the underlying data analysis scripts and models in the accompanying R and SQL files (if available).
+
+## Skills Demonstrated
+
+- Data cleaning and exploratory analysis with **R**  
+- Statistical modeling and machine learning techniques  
+- Data visualization and presentation skills  
+- Business analytics and strategic marketing focus  
+- SQL querying and database management (if SQL scripts included)
 
 ## About Me
 
-I am a dedicated Business Analyst with expertise in bridging the gap between business needs and technology solutions. Leveraging my strong foundation in analytics tools and methodologies, I aim to help organizations optimize processes and make informed decisions.
+I am a Master’s student in Business Analytics passionate about applying data science to solve real-world business challenges. This project reflects my expertise in segmentation, predictive analytics, and data-driven decision making.
 
 ---
 
 **Contact:**  
 Email: phaniusacareer@gmail.com  
-Linkedin: www.linkedin.com/in/waytophani
-
-
+GitHub: [Your GitHub Profile Link]  
+LinkedIn: [Your LinkedIn Profile Link]
