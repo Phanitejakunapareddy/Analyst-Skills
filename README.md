@@ -1,16 +1,16 @@
-# SQL Assignments - MIS 673
+# SQL Projects - MIS 673
 
-This repository contains SQL scripts developed for various assignments in the MIS 673 course. The assignments cover database creation, data insertion, querying, and analysis using SQL Server.
+This repository contains SQL scripts developed as part of coursework and practice for MIS 673. The projects cover database creation, data insertion, querying, and analysis using SQL Server.
 
 ## Files Included
 
-- `Assignment4_phani_teja.sql`  
+- `.sql`  
   Contains SQL code for creating tables related to platforms, viewers, shows, actors, awards, genres, directors, and their relationships. Includes sample data inserts and basic SELECT queries.
 
-- `SQLQuery_1_Assignment5.sql`  
+- `2.sql`  
   Contains SQL queries to retrieve student information, show details, viewer ratings, and aggregated data such as counts and listings of shows by genre, viewer ratings, and platform usage.
 
-- `SQLQuery_1_assignment6.sql`  
+- `3.sql`  
   Contains advanced queries for enrollment statistics, student ages, course details, genre average ratings, platform viewer counts, director show counts, actor roles, and show awards.
 
 ## How to Use
@@ -19,7 +19,7 @@ This repository contains SQL scripts developed for various assignments in the MI
 
 2. Run queries from `SQLQuery_1_Assignment5.sql` and `SQLQuery_1_assignment6.sql` to retrieve insights and practice advanced SQL querying.
 
-3. Modify and extend queries as needed for further analysis or assignments.
+3. Modify and extend queries as needed for further analysis or projects.
 
 ## Learning Outcomes
 
@@ -31,12 +31,10 @@ This repository contains SQL scripts developed for various assignments in the MI
 
 ## About Me
 
-I am a Business Analytics master’s student passionate about data management and analytics. These SQL assignments demonstrate my ability to model data, write complex queries, and analyze relational databases effectively.
+I am a Business Analytics master’s student passionate about data management and analytics. These SQL projects demonstrate my ability to model data, write complex queries, and analyze relational databases effectively.
 
 ---
 
-**Contact:**  
+##Contact:##  
 Email: phaniusacareer@gmail.com  
-GitHub: [Your GitHub Profile Link]  
-LinkedIn: [Your LinkedIn Profile Link]
 
