@@ -1,0 +1,135 @@
+---
+title: "Superbowl_3"
+author: "Phaniteja"
+date: "10/08/2023"
+output:
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+```{r libraries, message=FALSE, include = FALSE}
+## Load Packages
+
+#In this section, we install and load the necessary packages. 
+
+library('dplyr')
+library('ggplot2')
+```
+
+## Import Data
+
+```{r import, include=FALSE}
+### set your working directory
+# use setwd to set your working directory
+
+# you can also go to session-> set working directory -> choose directory
+# working directory is the path to the folder and not file
+
+# If you would like to get the current working directory, run the following line
+getwd() 
+
+# make sure the path of the directory is correct, i.e., where you have stored your data
+setwd("/Users/phaniteja/Desktop/mgt585/Data")
+
+
+### import data file
+# read the movies file using read.csv
+superbowl <- read.csv(file = "superbowl.csv",fileEncoding = 'UTF-8-BOM')
+```
+
+
+```{r five functions}
+##Use five functions dim(), colnames(), str(), head() and tail() to explore all the superbowl table
+
+dim(superbowl)
+
+str(superbowl)
+
+colnames(superbowl)
+
+head(superbowl)
+
+tail(superbowl)
+
+```
+
+
+```{r factor & date}
+
+# new_brand is a factor
+
+superbowl$new_brand<- as.factor(superbowl$new_brand)
+
+#week_of is a date
+
+superbowl$week_of <-as.Date(superbowl$week_of, "%d-%b-%y")
+
+```
+
+```{r  descriptive statistics - mean and correlation}
+##compute the mean of adspend and volume and the correlation between the two before and after the Super Bowl
+
+superbowl %>% group_by(new_brand, superbowl) %>% summarize(avg_ad=mean(adspend))
+
+```
+
+# **Interpretation of the Data:** 
+# The brand that has highest mean ad spend after the Super Bowl is the Beetle. Moreover, the mean ad spending has of this brand increased after the Super Bowl by $888,830. 
+
+
+# **Create a bar chart to display the Total Number of Mentions (Volume) of the advertisment for each Brand**
+
+```{r bar chart}
+
+# bar graph - showing new brand and volume
+ggplot(superbowl, aes(x=new_brand, y = volume)) +
+geom_bar(stat = "identity",  fill="green", color="green") + 
+labs(title = "Total No. of Mentions of the Advertisement per Brand") + 
+ylab("Total No. of Mentions") + xlab("Brands")
+
+```
+# **Interpretation of the Data:** 
+# Based on the data, we can see that the brand Camaro has the highest total number of mentions on social media of their advertisement among the three brands. 
+
+# **Create a line chart to display the volume throughout the superbowl event for each Brand**
+
+```{r line chart}
+# Line chart - showing new brand and volume
+
+ggplot(superbowl %>% group_by(week_of, new_brand) %>% summarize(AvgVol = mean(volume)), 
+       aes(x = week_of, y = AvgVol, color = new_brand)) + 
+  geom_line(size=2) +
+labs(title = "Average No. of Mentions throughout the Super Bowl Event") + 
+ylab("Average Volume") + xlab("Month")
+
+```
+
+# **Interpretation of the Data:**
+# According to the line graph, Camaro has the highest average of total number of mentions among all the three brands throughout the Super Bowl event. 
+
+```{r scatter plot}
+## create a scatter plot to display the **correlation** between the **adspend** and **volume** throughout the super bowl event for each **new_brand**
+
+ggplot(superbowl, mapping = aes(x = adspend, y = volume, color = new_brand)) + 
+  geom_point() + 
+  scale_x_log10() +
+labs(title = "Correlation between Advertisement Spending and Volume") +
+ylab("Total No. of Mentions about the Brand") + xlab("Advertisement Spending")
+``` 
+
+# **Interpretation of the Data:**
+#According to the scatter plot,the correlation between volume and ad spend has a weak positive relationship which signifies the brand didn't have to spend as much to get a lot of engagement from its consumers and users this is true for the Brand Camaro.   
+
+
