@@ -1,0 +1,293 @@
+---
+title: "Superbowl_Part1_Rscript"
+author: "PHANITEJA KUNAPAREDDY"
+date: "09/26/2023"
+output:
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+Use control+Enter to run the code chunks on PC.
+Use command+Enter to run the code chunks on MAC.
+
+## Load Packages
+
+In this section, we install and load the necessary packages. 
+
+```{r libraries, message=FALSE, include = FALSE}
+### Install packages. If you haven't install the dplyr package, please uncomment the line below to install it. 
+#Attention: Before knitting, make sure to comment out the following line.
+#install.packages('dplyr') # required only once.
+
+### load libraries for use in current working session
+library('dplyr')
+```
+
+## Import Data
+
+In this section, we import the necessary data for this lab.
+
+```{r import, include=FALSE}
+### set your working directory
+# use setwd to set your working directory
+
+# you can also go to session-> set working directory -> choose directory
+# working directory is the path to the folder and not file
+
+# make sure the path of the directory is correct, i.e., where you have stored your data
+
+setwd("/Users/phaniteja/Desktop/mgt585/Data")
+
+# If you would like to get your current working directory, run the following line
+getwd() 
+
+### import data file
+# read the movies file using read.csv
+superbowl <- read.csv(file = "superbowl.csv",fileEncoding = 'UTF-8-BOM')
+```
+
+# Homework Assignment 1: Super Bowl Caselet (Part 1)
+
+You are hired as a Business Analyst to help the manager to find out if spending millions of dollars on Super Bowl ads creates social media buzz.
+
+As a first step, carry out the analysis using DPLYR using superbowl.csv data. There are some questions below that you need to answer.
+
+## Dataset Exploration
+```{r explore}
+
+# Use five functions dim(), colnames(), str(), head() and tail() to explore all the superbowl table
+dim(superbowl)
+colnames(superbowl)
+str(superbowl)
+head(superbowl)
+tail(superbowl)
+# observe different columns of the table and values in the rows
+# type your answer below this line
+
+
+
+# tell R, new_brand, month and superbowl columns are factor
+superbowl$month <- as.factor(superbowl$month)
+superbowl$new_brand <- as.factor(superbowl$new_brand)
+superbowl$superbowl <- as.factor(superbowl$superbowl)
+superbowl
+
+
+
+
+# tell R, week_of is date of format "%d-%b-%y"
+superbowl$week_of <- as.Date(superbowl$week_of, "%d-%b-%y")
+
+
+
+# you can try and experiment with different date formats here: 
+# https://campus.datacamp.com/courses/intermediate-r-for-finance/dates?ex=6
+
+
+
+```
+
+## Five Functions of DPLYR
+
+```{r DPLYR Basics1}
+
+# Query 1. Filter all rows where new_brand == 'Beetle'
+# type your answer below this line
+filter(superbowl,new_brand == "Beetle")
+
+
+```
+
+### interpret the results:
+ id time new_brand    week_of adspend month year volume  pos neg mixed superbowl
+1   1    1    Beetle 2012-01-02     2.7     1 2012   2661  533  62  2066         0
+2   1    2    Beetle 2012-01-09     4.0     1 2012   3620  677  87  2856         0
+3   1    3    Beetle 2012-01-16     1.3     1 2012   4138  753  98  3287         0
+4   1    4    Beetle 2012-01-23     0.7     1 2012   3255  674  99  2482         0
+5   1    5    Beetle 2012-01-30  7105.0     1 2012   5144 1199 172  3773         1
+6   1    6    Beetle 2012-02-06  2576.2     2 2012   8021 2150 435  5436         1
+7   1    7    Beetle 2012-02-13    41.2     2 2012   3728  881 145  2702         1
+8   1    8    Beetle 2012-02-20    42.8     2 2012   4396 1021 172  3203         1
+9   1    9    Beetle 2012-02-27    19.8     2 2012   4297  865 158  3274         1
+10  1   10    Beetle 2012-03-05     0.3     3 2012   4326  895 148  3283         1
+11  1   11    Beetle 2012-03-12     1.4     3 2012   3870  873 113  2884         1
+12  1   12    Beetle 2012-03-19     2.5     3 2012   3840  956 135  2749         1
+13  1   13    Beetle 2012-03-26     4.3     3 2012   4240  878 109  3253         1
+14  1   14    Beetle 2012-04-02     2.3     4 2012   3760  589  84  3087         1
+15  1   15    Beetle 2012-04-09     0.9     4 2012   1885  311  44  1530         1
+
+```{r DPLYR Basics2}
+# Query 2.Select all the columns related to buzz metrics (volume, positive and negative mentions)
+# type your answer below this line
+ select(superbowl,volume:neg)
+
+```
+### interpret the results:
+  volume   pos  neg
+1    2661   533   62
+2    3620   677   87
+3    4138   753   98
+4    3255   674   99
+5    5144  1199  172
+6    8021  2150  435
+7    3728   881  145
+8    4396  1021  172
+9    4297   865  158
+10   4326   895  148
+11   3870   873  113
+12   3840   956  135
+13   4240   878  109
+14   3760   589   84
+15   1885   311   44
+16   1014   246   54
+17    970   232   42
+18   1554   348  110
+19   1148   246   36
+20   3342   446   72
+21   2038   580   72
+22   1534   264   56
+23   1324   494   42
+24   1434   432   66
+25   1268   302   36
+26   1228   282   34
+27   1230   298   76
+28   1396   282   50
+29    988   262   40
+30    566    88    4
+31  78030 18528 4036
+32  84868 19966 4348
+33  91640 23230 4698
+34  95844 24004 4752
+35  98910 25140 4908
+36 100034 27568 5022
+37  94030 24234 4640
+38 101664 26762 5454
+39 107356 27746 5242
+40 108438 26236 5582
+41 104014 26190 5010
+42  92904 23048 4944
+43 107044 26418 5742
+44  85274 19522 4000
+45  30078  5732  924
+
+
+```{r DPLYR Basics3}
+# Query 3. Arrange the adspend column in descending order and see which brand has the highest ad spend and in which week_of
+# type your answer below this line
+ arrange(superbowl,-(adspend))
+
+```
+### interpret the results:
+ id time new_brand    week_of adspend month year volume   pos  neg mixed superbowl
+1   1    5    Beetle 2012-01-30  7105.0     1 2012   5144  1199  172  3773         1
+2   3    5    Camaro 2012-01-30  3977.6     1 2012  98910 25140 4908 68862         1
+3   1    6    Beetle 2012-02-06  2576.2     2 2012   8021  2150  435  5436         1
+4   3   13    Camaro 2012-03-26   534.0     3 2012 107044 26418 5742 74884         1
+5   3    6    Camaro 2012-02-06   272.1     2 2012 100034 27568 5022 67444         1
+6   3   10    Camaro 2012-03-05   202.5     3 2012 108438 26236 5582 76620         1
+7   3   14    Camaro 2012-04-02   165.3     4 2012  85274 19522 4000 61752         1
+8   3   11    Camaro 2012-03-12   132.3     3 2012 104014 26190 5010 72814         1
+9   3   12    Camaro 2012-03-19   105.5     3 2012  92904 23048 4944 64912         1
+10  3    9    Camaro 2012-02-27    88.9     2 2012 107356 27746 5242 74368         1
+11  3    3    Camaro 2012-01-16    86.9     1 2012  91640 23230 4698 63712         0
+12  3   15    Camaro 2012-04-09    82.4     4 2012  30078  5732  924 23422         1
+13  3    1    Camaro 2012-01-02    75.3     1 2012  78030 18528 4036 55466         0
+14  3    8    Camaro 2012-02-20    72.7     2 2012 101664 26762 5454 69448         1
+15  3    4    Camaro 2012-01-23    61.2     1 2012  95844 24004 4752 67088         0
+16  3    2    Camaro 2012-01-09    61.0     1 2012  84868 19966 4348 60554         0
+17  3    7    Camaro 2012-02-13    59.9     2 2012  94030 24234 4640 65156         1
+18  1    8    Beetle 2012-02-20    42.8     2 2012   4396  1021  172  3203         1
+19  1    7    Beetle 2012-02-13    41.2     2 2012   3728   881  145  2702         1
+20  1    9    Beetle 2012-02-27    19.8     2 2012   4297   865  158  3274         1
+21  1   13    Beetle 2012-03-26     4.3     3 2012   4240   878  109  3253         1
+22  1    2    Beetle 2012-01-09     4.0     1 2012   3620   677   87  2856         0
+23  1    1    Beetle 2012-01-02     2.7     1 2012   2661   533   62  2066         0
+24  1   12    Beetle 2012-03-19     2.5     3 2012   3840   956  135  2749         1
+25  2    4      CR-Z 2012-01-23     2.4     1 2012   1148   246   36   866         0
+26  1   14    Beetle 2012-04-02     2.3     4 2012   3760   589   84  3087         1
+27  1   11    Beetle 2012-03-12     1.4     3 2012   3870   873  113  2884         1
+28  1    3    Beetle 2012-01-16     1.3     1 2012   4138   753   98  3287         0
+29  2    3      CR-Z 2012-01-16     1.2     1 2012   1554   348  110  1096         0
+30  2    7      CR-Z 2012-02-13     1.2     2 2012   1534   264   56  1214         1
+31  2    1      CR-Z 2012-01-02     1.0     1 2012   1014   246   54   714         0
+32  1   15    Beetle 2012-04-09     0.9     4 2012   1885   311   44  1530         1
+33  2    5      CR-Z 2012-01-30     0.9     1 2012   3342   446   72  2824         1
+34  2    8      CR-Z 2012-02-20     0.9     2 2012   1324   494   42   788         1
+35  2    9      CR-Z 2012-02-27     0.8     2 2012   1434   432   66   936         1
+36  2   11      CR-Z 2012-03-12     0.8     3 2012   1228   282   34   912         1
+37  1    4    Beetle 2012-01-23     0.7     1 2012   3255   674   99  2482         0
+38  2    6      CR-Z 2012-02-06     0.6     2 2012   2038   580   72  1386         1
+39  2   12      CR-Z 2012-03-19     0.6     3 2012   1230   298   76   856         1
+40  2   10      CR-Z 2012-03-05     0.5     3 2012   1268   302   36   930         1
+41  2   13      CR-Z 2012-03-26     0.5     3 2012   1396   282   50  1064         1
+42  2   14      CR-Z 2012-04-02     0.5     4 2012    988   262   40   686         1
+43  2   15      CR-Z 2012-04-09     0.5     4 2012    566    88    4   474         1
+44  2    2      CR-Z 2012-01-09     0.4     1 2012    970   232   42   696         0
+45  1   10    Beetle 2012-03-05     0.3     3 2012   4326   895  148  3283         1
+
+
+```{r DPLYR Basics4}
+# Query 4. Create a new column called sentiment which is a sum of positive (column name is pos) and negative (column name is neg) mentions,
+# and select only three columns for display, week_of, new_brand and sentiment
+# type your answer below this line
+ superbowl %>% mutate(sentiment=pos+neg) %>% select(week_of,new_brand,sentiment)
+
+```
+### interpret the results:
+   week_of new_brand sentiment
+1   2-Jan-12    Beetle       595
+2   9-Jan-12    Beetle       764
+3  16-Jan-12    Beetle       851
+4  23-Jan-12    Beetle       773
+5  30-Jan-12    Beetle      1371
+6   6-Feb-12    Beetle      2585
+7  13-Feb-12    Beetle      1026
+8  20-Feb-12    Beetle      1193
+9  27-Feb-12    Beetle      1023
+10  5-Mar-12    Beetle      1043
+11 12-Mar-12    Beetle       986
+12 19-Mar-12    Beetle      1091
+13 26-Mar-12    Beetle       987
+14  2-Apr-12    Beetle       673
+15  9-Apr-12    Beetle       355
+16  2-Jan-12      CR-Z       300
+17  9-Jan-12      CR-Z       274
+18 16-Jan-12      CR-Z       458
+19 23-Jan-12      CR-Z       282
+20 30-Jan-12      CR-Z       518
+21  6-Feb-12      CR-Z       652
+22 13-Feb-12      CR-Z       320
+23 20-Feb-12      CR-Z       536
+24 27-Feb-12      CR-Z       498
+25  5-Mar-12      CR-Z       338
+26 12-Mar-12      CR-Z       316
+27 19-Mar-12      CR-Z       374
+28 26-Mar-12      CR-Z       332
+29  2-Apr-12      CR-Z       302
+30  9-Apr-12      CR-Z        92
+31  2-Jan-12    Camaro     22564
+32  9-Jan-12    Camaro     24314
+33 16-Jan-12    Camaro     27928
+34 23-Jan-12    Camaro     28756
+35 30-Jan-12    Camaro     30048
+36  6-Feb-12    Camaro     32590
+37 13-Feb-12    Camaro     28874
+38 20-Feb-12    Camaro     32216
+39 27-Feb-12    Camaro     32988
+40  5-Mar-12    Camaro     31818
+41 12-Mar-12    Camaro     31200
+42 19-Mar-12    Camaro     27992
+43 26-Mar-12    Camaro     32160
+44  2-Apr-12    Camaro     23522
+45  9-Apr-12    Camaro      6656
